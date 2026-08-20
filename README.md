@@ -14,3 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+###---------------------------------------
+# โครงสร้าง provider ที่ออกแบบ (มีกี่ตัว ทำหน้าที่บ้าง)
+
+
+# เหตุผลที่เลือก state management pattern
+
+
+# หากมีข้อจำกัดด้านเวลาทำให้บางส่วนไม่สมบูรณ์ ให้ระบุไว้
