@@ -1,0 +1,102 @@
+[
+    {
+        "id": "t001",
+        "name": "CRYPTO 加密",
+        "avatarUrl": "https://i.pravatar.cc/150?img=1",
+        "copierCount": 0,
+        "copierLimit": 300,
+        "isAPI": true,
+        "tags": [
+            "Top Performer",
+            "Money Maker"
+        ],
+        "pnl30d": 56592.5,
+        "roi30d": 17.07,
+        "aum": 388038.47,
+        "mdd30d": 2.54,
+        "sharpeRatio": 2.15
+    },
+    {
+        "id": "t002",
+        "name": "師429",
+        "avatarUrl": "https://i.pravatar.cc/150?img=2",
+        "copierCount": 300,
+        "copierLimit": 300,
+        "isAPI": false,
+        "tags": [
+            "Whale Manager"
+        ],
+        "pnl30d": 53247.32,
+        "roi30d": 5.32,
+        "aum": 1121849.62,
+        "mdd30d": 6.97,
+        "sharpeRatio": 0.85
+    },
+    {
+        "id": "t003",
+        "name": "Alpha Wolf",
+        "avatarUrl": "https://i.pravatar.cc/150?img=3",
+        "copierCount": 145,
+        "copierLimit": 200,
+        "isAPI": true,
+        "tags": [
+            "Most Resilient",
+            "Solid Growth"
+        ],
+        "pnl30d": 23000.0,
+        "roi30d": 9.8,
+        "aum": 210000.0,
+        "mdd30d": 3.1,
+        "sharpeRatio": 1.72
+    },
+    {
+        "id": "t004",
+        "name": "GoldenBull",
+        "avatarUrl": "https://i.pravatar.cc/150?img=4",
+        "copierCount": 88,
+        "copierLimit": 150,
+        "isAPI": false,
+        "tags": [
+            "Money Maker",
+            "Most Consistent"
+        ],
+        "pnl30d": 71500.0,
+        "roi30d": 22.4,
+        "aum": 315000.0,
+        "mdd30d": 4.8,
+        "sharpeRatio": 2.05
+    },
+    {
+        "id": "t005",
+        "name": "SafeHands FX",
+        "avatarUrl": "https://i.pravatar.cc/150?img=5",
+        "copierCount": 12,
+        "copierLimit": 100,
+        "isAPI": false,
+        "tags": [
+            "Low Leverage"
+        ],
+        "pnl30d": 4200.0,
+        "roi30d": 1.9,
+        "aum": 45000.0,
+        "mdd30d": 0.8,
+        "sharpeRatio": 1.1
+    },
+    {
+        "id": "t006",
+        "name": "Whale King",
+        "avatarUrl": "https://i.pravatar.cc/150?img=6",
+        "copierCount": 500,
+        "copierLimit": 500,
+        "isAPI": true,
+        "tags": [
+            "Whale Manager",
+            "Top Performer"
+        ],
+        "pnl30d": 4210.0,
+        "roi30d": 1.9,
+        "aum": 45800.0,
+        "mdd30d": 0.7,
+        "sharpeRatio": 1.15
+    }
+]
