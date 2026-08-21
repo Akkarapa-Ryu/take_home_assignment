@@ -4,6 +4,7 @@ import '../services/json_service.dart';
 
 final traderProvider = AsyncNotifierProvider<TraderNotifier, List<Trader>>(TraderNotifier.new,);
 
+// AsyncNotifier เอาไว้โหลดข้อมูลที่ต้องใช้งาน
 class TraderNotifier extends AsyncNotifier<List<Trader>> {
   @override
   Future<List<Trader>> build() async {

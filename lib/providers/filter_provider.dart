@@ -36,6 +36,7 @@ const _unset = Object();
 
 final filterProvider = NotifierProvider<FilterNotifier, TraderFilter>(FilterNotifier.new,);
 
+// Notifier เราเลือกเพราะมันใช้ในการเลือกค่าที่ต้องการนำไปใช้งานต่อ
 class FilterNotifier extends Notifier<TraderFilter> {
   @override
   TraderFilter build() {
