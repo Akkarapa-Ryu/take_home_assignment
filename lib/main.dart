@@ -1,9 +1,7 @@
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:take_home_assignment/providers/trader_provider.dart';
+import '../pages/profile_list.dart';
+
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -26,43 +24,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TraderPage extends ConsumerWidget {
-  const TraderPage({super.key});
 
-  @override
-  Widget build(
-    BuildContext context,
-    WidgetRef ref,
-  ) {
-    final traders = ref.watch(traderProvider);
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Traders'),
-        ),
-        body: traders.when(loading: () {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }, error: (error, stackTrace) {
-          return Center(
-            child: Text('Error: $error'),
-          );
-        }, data: (traders) {
-          return ListView.builder(
-              itemCount: traders.length,
-              itemBuilder: (context, index) {
-                final trader = traders[index];
-                return ListTile(
-                  // leading: CircleAvatar(
-                  //   backgroundImage: NetworkImage(trader.avatarUrl),
-                  // ),
-                  title: Text(trader.name),
-                  subtitle: Text('ROI 30D: ${trader.roi30d}'),
-                );
-              });
-        }));
-  }
-}
 
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({super.key, required this.title});
