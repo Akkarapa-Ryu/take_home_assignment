@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -168,56 +169,78 @@ class TraderPage extends ConsumerWidget {
             }
             final trader = filteredtraders[index - 1];
             return Card(
-              shape: Border.all(color: Colors.black54),
-              child: ListTile(
-                title: Column(
-                  children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(trader.avatarUrl),
-                        ),
-                        Column(
-                          children: [
-                            Text(trader.name),
-                            Row(
-                              children: [
-                                Text(
-                                    '${trader.copierCount}/${trader.copierLimit}'),
-                                if (trader.isAPI == true) const Text(' API')
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const Text("30 Days PNL (USD)"),
-                    Text('${trader.pnl30d}'),
-                    Text('ROI  ${trader.roi30d}%'),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: [const Text('AUM'), Text('${trader.aum}')],
-                        ),
-                        Column(
-                          children: [
-                            const Text('30 Days MDD'),
-                            Text('${trader.mdd30d}')
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const Text('Days Leading Trading'),
-                            Text('${trader.shareRation}')
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
+              shape: Border.all(color: Colors.white70),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                    Colors.white,
+                    Colors.amber.shade100,
+                  ]
+                  )
                 ),
-                // subtitle: Text('ROI 30D: ${trader.roi30d}'),
+                child: ListTile(
+                  title: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage(trader.avatarUrl),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(trader.name),
+                              Row(
+                                children: [
+                                  Text(
+                                      '${trader.copierCount}/${trader.copierLimit}'),
+                                  if (trader.isAPI == true) const Text(' API')
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const Text("30 Days PNL (USD)"),
+                      Text('${trader.pnl30d}'),
+                      Text('ROI  ${trader.roi30d}%'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            children: [const Text('AUM'), Text('${trader.aum}')],
+                          ),
+                          Column(
+                            children: [
+                              const Text('30 Days MDD'),
+                              Text('${trader.mdd30d}')
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              const Text('Days Leading Trading'),
+                              Text('${trader.shareRation}')
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(onPressed: null, child: Text('Mock')),
+                          ElevatedButton(onPressed: null, child: Text('Copy')),
+                        ],
+                      )
+                    ],
+                  ),
+                  // subtitle: Text('ROI 30D: ${trader.roi30d}'),
+                ),
               ),
             );
           });
