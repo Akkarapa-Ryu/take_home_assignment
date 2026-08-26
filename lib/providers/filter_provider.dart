@@ -1,80 +1,100 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TraderFilter {
-  final List<String> tag;
-  final double minPnl;
-  final double maxPnl;
-  final double? minRoi;
-  final bool apiOnly;
+import '../models/trader.dart';
+import '../utils/trader_filter.dart';
 
-  const TraderFilter({
-    this.tag = const [],
-    this.minPnl = 0,
-    this.maxPnl = 500000,
-    this.minRoi,
-    this.apiOnly = false,
-  });
+final filterProvider =
+    NotifierProvider<FilterNotifier, TraderFilter>(
+  FilterNotifier.new,
+);
 
-  TraderFilter copyWith({
-    List<String>? tag,
-    double? minPnl,
-    double? maxPnl,
-    double? minRoi,
-    bool? apiOnly,
-  }) {
-    return TraderFilter(
-      tag: tag ?? this.tag,
-      minPnl: minPnl ?? this.minPnl,
-      maxPnl: maxPnl ?? this.maxPnl,
-      minRoi: minRoi ?? this.minRoi,
-      apiOnly: apiOnly ?? this.apiOnly,
-    );
-  }
-}
-
-const _unset = Object();
-
-final filterProvider = NotifierProvider<FilterNotifier, TraderFilter>(FilterNotifier.new,);
-
-// Notifier เราเลือกเพราะมันใช้ในการเลือกค่าที่ต้องการนำไปใช้งานต่อ
 class FilterNotifier extends Notifier<TraderFilter> {
   @override
   TraderFilter build() {
     return const TraderFilter();
   }
 
+  // =========================
+  // Tags
+  // =========================
+
   void toggleTag(String tag) {
-    final tags = [...?state.tag];
-    if (tags.contains(tag)) {
-      tags.remove(tag);
+    final currentTags = [...state.tags];
+
+    if (currentTags.contains(tag)) {
+      currentTags.remove(tag);
     } else {
-      tags.add(tag);
+      currentTags.add(tag);
     }
 
-    state = state.copyWith(tag: tags);
+    state = state.copyWith(
+      tags: currentTags,
+    );
   }
 
-    void setPnl(double min, double max) {
+  void setTags(List<String> tags) {
+    state = state.copyWith(tags: [...tags]);
+  }
+
+  // =========================
+  // PNL
+  // =========================
+
+  void setPnlRange(
+    double min,
+    double max,
+  ) {
     state = state.copyWith(
       minPnl: min,
       maxPnl: max,
     );
   }
 
-  void setRoi(double? roi) {
+  // =========================
+  // ROI
+  // =========================
+
+  void setMinRoi(double? roi) {
+    if (roi == null) {
+      state = state.copyWith(
+        clearMinRoi: true,
+      );
+      return;
+    }
+
     state = state.copyWith(
       minRoi: roi,
     );
   }
 
-  void setApi(bool value) {
+  // =========================
+  // API
+  // =========================
+
+  void setApiOnly(bool value) {
     state = state.copyWith(
       apiOnly: value,
     );
   }
 
+  // =========================
+  // Reset
+  // =========================
+
   void reset() {
     state = const TraderFilter();
   }
-}
 
+  // =========================
+  // Apply
+  // =========================
+
+  List<Trader> apply(
+    List<Trader> traders,
+  ) {
+    return applyFilter(
+      traders,
+      state,
+    );
+  }
+}

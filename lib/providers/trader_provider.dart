@@ -1,14 +1,19 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../models/trader.dart';
-import '../services/json_service.dart';
 
-final traderProvider = AsyncNotifierProvider<TraderNotifier, List<Trader>>(TraderNotifier.new,);
+final traderProvider =
+    FutureProvider<List<Trader>>((ref) async {
+  final jsonString =
+      await rootBundle.loadString('assets/raw_data.json');
 
-// AsyncNotifier เอาไว้โหลดข้อมูลที่ต้องใช้งาน
-class TraderNotifier extends AsyncNotifier<List<Trader>> {
-  @override
-  Future<List<Trader>> build() async {
-    final jsonService = JsonService();
-    return jsonService.loadTraders();
-  }
-}
+  final List<dynamic> jsonData =
+      json.decode(jsonString);
+
+  return jsonData
+      .map((item) => Trader.fromJson(item))
+      .toList();
+});
