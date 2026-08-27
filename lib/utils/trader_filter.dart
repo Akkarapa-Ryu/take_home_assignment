@@ -15,12 +15,36 @@ class TraderFilter {
     this.apiOnly = false,
   });
 
-    bool get hasActiveFilter {
-  return tags.isNotEmpty ||
-      minPnl != 0 ||
-      maxPnl != 500000 ||
-      minRoi != null ||
-      apiOnly;
+  bool get hasActiveFilter {
+    return tags.isNotEmpty ||
+        minPnl != 0 ||
+        maxPnl != 500000 ||
+        minRoi != null ||
+        apiOnly;
+  }
+
+  int get activeFilterCount {
+    int count = 0;
+
+    // แต่ละ Tag = 1
+    count += tags.length;
+
+    // PNL range = 1
+    if (minPnl != 0 || maxPnl != 500000) {
+      count++;
+    }
+
+    // ROI = 1
+    if (minRoi != null) {
+      count++;
+    }
+
+    // API = 1
+    if (apiOnly) {
+      count++;
+    }
+
+    return count;
   }
 
   TraderFilter copyWith({
@@ -47,30 +71,6 @@ class TraderFilter {
         minRoi == null &&
         !apiOnly;
   }
-
-  int get activeFilterCount {
-  int count = 0;
-
-  // แต่ละ Tag ที่เลือก = 1
-  count += tags.length;
-
-  // PNL นับเฉพาะเมื่อไม่ใช่ค่า Default
-  if (minPnl != 0 || maxPnl != 500000) {
-    count++;
-  }
-
-  // ROI ที่เลือก = 1
-  if (minRoi != null) {
-    count++;
-  }
-
-  // API = 1
-  if (apiOnly) {
-    count++;
-  }
-
-  return count;
-}
 }
 
 List<Trader> applyFilter(
@@ -78,16 +78,16 @@ List<Trader> applyFilter(
   TraderFilter filter,
 ) {
   return traders.where((trader) {
-    // =========================
-    // Tags
-    // =========================
 
+    // =========================
+    // Tags - AND
+    // =========================
     if (filter.tags.isNotEmpty) {
-      final hasMatchingTag = filter.tags.every(
+      final hasAllTags = filter.tags.every(
         (selectedTag) => trader.tags.contains(selectedTag),
       );
 
-      if (!hasMatchingTag) {
+      if (!hasAllTags) {
         return false;
       }
     }
@@ -95,23 +95,24 @@ List<Trader> applyFilter(
     // =========================
     // PNL
     // =========================
-
-    if (trader.pnl30d < filter.minPnl || trader.pnl30d > filter.maxPnl) {
-      return false;
+    if (filter.minPnl != 0 || filter.maxPnl != 500000) {
+      if (trader.pnl30d < filter.minPnl ||
+          trader.pnl30d > filter.maxPnl) {
+        return false;
+      }
     }
 
     // =========================
     // ROI
     // =========================
-
-    if (filter.minRoi != null && trader.roi30d < filter.minRoi!) {
+    if (filter.minRoi != null &&
+        trader.roi30d < filter.minRoi!) {
       return false;
     }
 
     // =========================
     // API
     // =========================
-
     if (filter.apiOnly && !trader.isAPI) {
       return false;
     }

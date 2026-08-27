@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/filter_provider.dart';
 import '../providers/trader_provider.dart';
-import '../utils/trader_filter.dart';
 import '../widgets/filter_bottom_sheet.dart';
 import '../widgets/portfolio_tabs.dart';
 import '../widgets/top_banner.dart';
@@ -17,14 +16,13 @@ class PortfolioListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tradersAsync = ref.watch(traderProvider);
-    final filter = ref.watch(filterProvider);
-    final hasActiveFilter = filter.hasActiveFilter;
+    final filteredTradersAsync = ref.watch(filteredTraderProvider);
+    final filterCount = ref.watch(activeFilterCountProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: tradersAsync.when(
+        child: filteredTradersAsync.when(
           loading: () {
             return const Center(
               child: CircularProgressIndicator(),
@@ -39,8 +37,7 @@ class PortfolioListPage extends ConsumerWidget {
             );
           },
 
-          data: (traders) {
-            final filteredTraders = applyFilter(traders, filter);
+          data: (filteredTraders) {
             return CustomScrollView(
               slivers: [
                 // =========================
@@ -65,13 +62,13 @@ class PortfolioListPage extends ConsumerWidget {
 
                 SliverToBoxAdapter(
                   child: PortfolioTabs(
-                    filterCount: filter.activeFilterCount,
+                    filterCount: filterCount,
                     onFilterTap: () {
                       showModalBottomSheet(context: context, 
                       builder: (context) {
                         return FilterBottomSheet();
                       });
-                    }, hasActiveFilter: filter.activeFilterCount > 0,
+                    }, hasActiveFilter: filterCount > 0,
                   ),
                 ),
 
@@ -122,9 +119,10 @@ class PortfolioListPage extends ConsumerWidget {
                               ),
                             ),
 
-                            const Icon(
+                            Icon(
                               Icons.chevron_right,
                               size: 20,
+                              color: Colors.grey.shade600,
                             ),
                           ],
                         ),
@@ -175,9 +173,9 @@ class PortfolioListPage extends ConsumerWidget {
             MainAxisAlignment.spaceBetween,
         children: [
           // Spot
-          Row(
+          const Row(
             children: [
-              const Text(
+              Text(
                 'Spot',
                 style: TextStyle(
                   fontSize: 16,
@@ -185,9 +183,9 @@ class PortfolioListPage extends ConsumerWidget {
                 ),
               ),
 
-              const SizedBox(width: 4),
+              SizedBox(width: 4),
 
-              const Icon(
+              Icon(
                 Icons.keyboard_arrow_down,
                 size: 20,
               ),

@@ -1,8 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/trader.dart';
 import '../utils/trader_filter.dart';
 
+/// Global Filter State
+///
+/// NotifierProvider ไม่มี autoDispose
+/// จึงรักษา state เอาไว้ตลอดอายุของ ProviderContainer
 final filterProvider =
     NotifierProvider<FilterNotifier, TraderFilter>(
   FilterNotifier.new,
@@ -33,7 +36,9 @@ class FilterNotifier extends Notifier<TraderFilter> {
   }
 
   void setTags(List<String> tags) {
-    state = state.copyWith(tags: [...tags]);
+    state = state.copyWith(
+      tags: [...tags],
+    );
   }
 
   // =========================
@@ -84,17 +89,14 @@ class FilterNotifier extends Notifier<TraderFilter> {
   void reset() {
     state = const TraderFilter();
   }
-
-  // =========================
-  // Apply
-  // =========================
-
-  List<Trader> apply(
-    List<Trader> traders,
-  ) {
-    return applyFilter(
-      traders,
-      state,
-    );
-  }
 }
+
+// =========================
+// Derived Provider
+// =========================
+
+final activeFilterCountProvider = Provider<int>((ref) {
+  final filter = ref.watch(filterProvider);
+
+  return filter.activeFilterCount;
+});

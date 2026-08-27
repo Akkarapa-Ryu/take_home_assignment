@@ -11,13 +11,13 @@ class TopBanner extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(right: 5, left: 5),
+          margin: EdgeInsets.only(right: 7, left: 7),
           child: const Text('Spot Copy Trading',
           style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
         ),
         SizedBox(height: 10,),
         Container(
-          margin: EdgeInsets.only(right: 5, left: 5),
+          margin: EdgeInsets.only(right: 7, left: 7),
           child: const Text("Follow the world's top cryto traders and copy their trades with one click",
             softWrap: true,
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
