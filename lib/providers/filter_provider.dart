@@ -19,8 +19,6 @@ class FilterNotifier extends Notifier<TraderFilter> {
 
   // =========================
   // Tags
-  // =========================
-
   void toggleTag(String tag) {
     final currentTags = [...state.tags];
 
@@ -43,8 +41,6 @@ class FilterNotifier extends Notifier<TraderFilter> {
 
   // =========================
   // PNL
-  // =========================
-
   void setPnlRange(
     double min,
     double max,
@@ -57,8 +53,6 @@ class FilterNotifier extends Notifier<TraderFilter> {
 
   // =========================
   // ROI
-  // =========================
-
   void setMinRoi(double? roi) {
     if (roi == null) {
       state = state.copyWith(
@@ -74,8 +68,6 @@ class FilterNotifier extends Notifier<TraderFilter> {
 
   // =========================
   // API
-  // =========================
-
   void setApiOnly(bool value) {
     state = state.copyWith(
       apiOnly: value,
@@ -84,8 +76,6 @@ class FilterNotifier extends Notifier<TraderFilter> {
 
   // =========================
   // Reset
-  // =========================
-
   void reset() {
     state = const TraderFilter();
   }
@@ -93,8 +83,6 @@ class FilterNotifier extends Notifier<TraderFilter> {
 
 // =========================
 // Derived Provider
-// =========================
-
 final activeFilterCountProvider = Provider<int>((ref) {
   final filter = ref.watch(filterProvider);
 

@@ -46,7 +46,6 @@ class PortfolioTabs extends StatelessWidget {
 
           // =========================
           // Filter Button
-          // =========================
           GestureDetector(
             onTap: onFilterTap,
             child: Container(
@@ -58,8 +57,7 @@ class PortfolioTabs extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: const Color(0xFFFFF8DD),
-                borderRadius:
-                    BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Stack(
                 clipBehavior: Clip.none,
@@ -71,39 +69,34 @@ class PortfolioTabs extends StatelessWidget {
                   ),
 
                   // Badge
-                if (filterCount > 0)
-                  Positioned(
-                    right: -4,
-                    top: -4,
-                    child: Container(
-                      constraints:
-                          const BoxConstraints(
-                        minWidth: 20,
-                        minHeight: 20,
-                      ),
-                      padding:
-                          const EdgeInsets.symmetric(
-                        horizontal: 5,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color:
-                            const Color(0xFFF5B800),
-                        borderRadius:
-                            BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        '$filterCount',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 11,
-                          fontWeight:
-                              FontWeight.bold,
-                          color: Colors.black,
+                  if (filterCount > 0)
+                    Positioned(
+                      right: -4,
+                      top: -4,
+                      child: Container(
+                        constraints: const BoxConstraints(
+                          minWidth: 20,
+                          minHeight: 20,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF5B800),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          '$filterCount',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -127,15 +120,10 @@ class PortfolioTabs extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 16,
-                color: selected
-                    ? Colors.black
-                    : Colors.grey.shade600,
-                fontWeight: selected
-                    ? FontWeight.w500
-                    : FontWeight.normal,
+                color: selected ? Colors.black : Colors.grey.shade600,
+                fontWeight: selected ? FontWeight.w500 : FontWeight.normal,
               ),
             ),
-
             if (selected)
               Positioned(
                 bottom: 0,
@@ -143,8 +131,7 @@ class PortfolioTabs extends StatelessWidget {
                 right: 0,
                 child: Container(
                   height: 3,
-                  color:
-                      const Color(0xFFF5B800),
+                  color: const Color(0xFFF5B800),
                 ),
               ),
           ],

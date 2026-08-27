@@ -11,7 +11,6 @@ class Trader {
   final double aum;
   final double mdd30d;
   final double sharpeRatio;
-  // final int daysLeadingTrading;
 
   const Trader({
     required this.id,
@@ -26,7 +25,6 @@ class Trader {
     required this.aum,
     required this.mdd30d,
     required this.sharpeRatio,
-    // required this.daysLeadingTrading,
   });
 
   factory Trader.fromJson(Map<String, dynamic> json) {
@@ -43,7 +41,6 @@ class Trader {
       aum: (json['aum'] as num).toDouble(),
       mdd30d: (json['mdd30d'] as num).toDouble(),
       sharpeRatio: (json['sharpeRatio'] as num).toDouble(),
-      // daysLeadingTrading: (json['daysLeadingTrading'] as num).toInt(),
     );
   }
 }

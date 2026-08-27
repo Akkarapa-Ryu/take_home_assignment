@@ -31,8 +31,6 @@ class TraderCard extends StatelessWidget {
         children: [
           // =========================
           // Header
-          // =========================
-
           Row(
             children: [
               TraderAvatar(
@@ -96,8 +94,6 @@ class TraderCard extends StatelessWidget {
 
           // =========================
           // PNL
-          // =========================
-
           Text(
             '30 Days PNL (USD)',
             style: TextStyle(
@@ -144,8 +140,6 @@ class TraderCard extends StatelessWidget {
 
           // =========================
           // Statistics
-          // =========================
-
           Row(
             children: [
               Expanded(
@@ -176,8 +170,6 @@ class TraderCard extends StatelessWidget {
 
           // =========================
           // Buttons
-          // =========================
-
           Row(
             children: [
               SizedBox(

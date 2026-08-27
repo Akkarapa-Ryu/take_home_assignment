@@ -42,24 +42,18 @@ class PortfolioListPage extends ConsumerWidget {
               slivers: [
                 // =========================
                 // Top section
-                // =========================
-
                 SliverToBoxAdapter(
                   child: _buildHeader(),
                 ),
 
                 // =========================
                 // Banner
-                // =========================
-
                 const SliverToBoxAdapter(
                   child: TopBanner(),
                 ),
 
                 // =========================
                 // Tabs + Filter
-                // =========================
-
                 SliverToBoxAdapter(
                   child: PortfolioTabs(
                     filterCount: filterCount,
@@ -74,8 +68,6 @@ class PortfolioListPage extends ConsumerWidget {
 
                 // =========================
                 // Section title
-                // =========================
-
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(
@@ -133,8 +125,6 @@ class PortfolioListPage extends ConsumerWidget {
 
                 // =========================
                 // Trader Cards
-                // =========================
-
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,

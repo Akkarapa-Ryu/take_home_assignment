@@ -80,8 +80,7 @@ List<Trader> applyFilter(
   return traders.where((trader) {
 
     // =========================
-    // Tags - AND
-    // =========================
+    // Tags - ใช้ AND ในการกรอง tag
     if (filter.tags.isNotEmpty) {
       final hasAllTags = filter.tags.every(
         (selectedTag) => trader.tags.contains(selectedTag),
@@ -94,7 +93,6 @@ List<Trader> applyFilter(
 
     // =========================
     // PNL
-    // =========================
     if (filter.minPnl != 0 || filter.maxPnl != 500000) {
       if (trader.pnl30d < filter.minPnl ||
           trader.pnl30d > filter.maxPnl) {
@@ -104,7 +102,6 @@ List<Trader> applyFilter(
 
     // =========================
     // ROI
-    // =========================
     if (filter.minRoi != null &&
         trader.roi30d < filter.minRoi!) {
       return false;
@@ -112,7 +109,6 @@ List<Trader> applyFilter(
 
     // =========================
     // API
-    // =========================
     if (filter.apiOnly && !trader.isAPI) {
       return false;
     }

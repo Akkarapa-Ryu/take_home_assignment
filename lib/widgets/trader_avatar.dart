@@ -40,7 +40,6 @@ class TraderAvatar extends StatelessWidget {
             ),
           ),
         ),
-
         Positioned(
           right: -2,
           top: -8,
