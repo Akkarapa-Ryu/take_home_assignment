@@ -20,8 +20,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## โครงสร้าง provider ที่ออกแบบ (มีกี่ตัว ทำหน้าที่บ้าง)
 มี 2 ตัว
-- TraderNotifier ทำหน้าที่ให้การโหลดข้อมูลที่ต้องมีการใช้งาน
-- FilterNotifier ทำหน้าที่จัดการ state ที่ต้องมีการเลือกค่าไปใช้งาน
+- TraderNotifier ทำหน้าที่ให้การโหลดข้อมูลที่ต้องมีการใช้งาน จาก assets/raw_data.json
+- FilterNotifier ทำหน้าที่จัดการ filter ต้องมีการเลือกค่าไปใช้งาน (กรองข้อมูลที่ต้องการ) เช่น เลือก API ก็จะแสดงแค่อันที่มี API เป็นต้น
 
 
 ## เหตุผลที่เลือก state management pattern
